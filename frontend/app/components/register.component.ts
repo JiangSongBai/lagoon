@@ -5,5 +5,8 @@ import {Component} from '@angular/core';
   templateUrl: 'app/components/register.component.html'
 })
 export class Register {
+  OnSubmit() {
+    //TODO
+  }
 
 }
