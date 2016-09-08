@@ -87,7 +87,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Photo> photoList;
 
-    @ManyToOne
+    @ManyToMany
     private List<Photo> likedPhotoList;
 
 }
