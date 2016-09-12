@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="ui form" (ngSubmit)="OnSubmit()" #registerForm = "ngForm">
+  <form *ngIf="!registered" class="ui form" (ngSubmit)="OnSubmit()" #registerForm = "ngForm">
     <h2 class="ui dividing header">Register User</h2>
     <div class="field">
       <label>* Name</label>
@@ -28,5 +28,9 @@
     </div>
     <button type="submit" class="ui button">Register</button>
   </form>
+
+  <div *ngIf="registered">
+    <h1>Register Success!</h1>
+  </div>
 
 </div>
