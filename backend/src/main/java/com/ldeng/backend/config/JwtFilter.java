@@ -1,9 +1,10 @@
 package com.ldeng.backend.config;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureException;
+
+import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -11,8 +12,8 @@ import java.io.IOException;
 /**
  * Created by d_garcia on 12/09/2016.
  */
-
-public class JwtFilter { // Java Web Token Filter   --> se debe hacer ya que Angular hace primero un OPTIONS ????
+// Miararse : https://jwt.io/ y https://github.com/jwtk/jjwt
+public class JwtFilter { // JSON Web Token Filter   --> se debe hacer ya que Angular hace primero un OPTIONS ????
 
     public void doFilter(final ServletRequest req,
                          final ServletResponse res,
@@ -28,6 +29,20 @@ public class JwtFilter { // Java Web Token Filter   --> se debe hacer ya que Ang
             response.setStatus(HttpServletResponse.SC_OK);
 
             chain.doFilter(req, res);
+        } else {
+
+            if(authHeader == null || !authHeader.startsWith("Bearer ")){
+                throw new ServletException("Missing or invalid Authorization header -> MIA");
+            }
+
+            final String token = authHeader.substring(7); // "Bearer " son 7 caracteres....
+
+            try {
+                final Claims claims = Jwts.parser().setSigningKey("secretkey").parseClaimsJws(token).getBody();
+                request.setAttribute("claims", claims);
+            } catch(final SignatureException e) {
+                throw new ServletException("Invalid token -> MIA");
+            }
         }
 
     }
