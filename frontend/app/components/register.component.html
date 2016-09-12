@@ -5,10 +5,10 @@
       <label>* Name</label>
       <div class="two fields">
         <div class="field">
-          <input type="text" name="firstName" placeholder="First Name" required />
+          <input type="text" name="firstName" placeholder="First Name" [(ngModel)]="newUser.firstName" required />
         </div>
         <div class="field">
-          <input type="text" name="lastName" placeholder="Last Name" required />
+          <input type="text" name="lastName" placeholder="Last Name" [(ngModel)]="newUser.lastName" required />
         </div>
       </div>
     </div>
@@ -16,10 +16,10 @@
        <label>* Username/Password</label>
        <div class="three fields">
          <div class="field">
-           <input type="text" name="userName" placeholder="User Name" required />
+           <input type="text" name="userName" placeholder="User Name" [(ngModel)]="newUser.userName" required />
          </div>
          <div class="field">
-           <input type="password" name="password" placeholder="Password" required />
+           <input type="password" name="password" placeholder="Password" [(ngModel)]="newUser.password"  required />
          </div>
          <div class="field">
            <input type="password" name="password" placeholder="Password Again" required />
@@ -28,4 +28,5 @@
     </div>
     <button type="submit" class="ui button">Register</button>
   </form>
+
 </div>
