@@ -32,7 +32,7 @@ public class UserController {
         return userService.save(user);
     }
 
-    @RequestMapping(value="login", method=RequestMethod.POST)
+    @RequestMapping(value="login", method = RequestMethod.POST)
     public String login(@RequestBody Map<String, String> json) throws ServletException {
         if(json.get("username") == null || json.get("password") == null) {
             throw new ServletException("Please fill in username and password");
