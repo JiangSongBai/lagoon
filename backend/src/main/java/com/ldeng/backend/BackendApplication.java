@@ -16,7 +16,7 @@ public class BackendApplication {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 
-		registrationBean.setFilter((Filter) new JwtFilter());
+		registrationBean.setFilter(new JwtFilter());
 		registrationBean.addUrlPatterns("/rest/*");
 
 		return registrationBean;

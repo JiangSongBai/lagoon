@@ -3,6 +3,7 @@ package com.ldeng.backend.config;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureException;
+import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.io.IOException;
  * Created by d_garcia on 12/09/2016.
  */
 // Miararse : https://jwt.io/ y https://github.com/jwtk/jjwt
-public class JwtFilter { // JSON Web Token Filter   --> se debe hacer ya que Angular hace primero un OPTIONS ????
+public class JwtFilter extends GenericFilterBean{ // JSON Web Token Filter   --> se debe hacer ya que Angular hace primero un OPTIONS ????
 
     public void doFilter(final ServletRequest req,
                          final ServletResponse res,

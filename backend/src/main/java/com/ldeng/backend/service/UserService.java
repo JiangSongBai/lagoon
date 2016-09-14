@@ -7,4 +7,5 @@ import com.ldeng.backend.model.User;
  */
 public interface UserService {
     User save(User save);
+    User findByUserName(String userName);
 }
