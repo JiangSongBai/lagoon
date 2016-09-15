@@ -44,6 +44,8 @@ public class JwtFilter extends GenericFilterBean { // JSON Web Token Filter   --
             } catch(final SignatureException e) {
                 throw new ServletException("Invalid token -> MIA");
             }
+
+            chain.doFilter(req, res);
         }
 
     }

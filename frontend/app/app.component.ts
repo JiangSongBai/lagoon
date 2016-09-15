@@ -10,13 +10,14 @@ import {HTTP_PROVIDERS} from '@angular/http';
 
 import {RegisterService} from './services/register.service';
 
+import {LoginService} from './services/login.service';
 import {Login} from './components/login.component';
 
 
 @Component({
   selector: 'my-app',
   directives: [HomeComponent, NavBar, ROUTER_DIRECTIVES, Login],
-  providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, RegisterService],
+  providers: [ROUTER_PROVIDERS, HTTP_PROVIDERS, RegisterService, LoginService],
   template:  `
   <nav-bar></nav-bar>
   <router-outlet></router-outlet>
