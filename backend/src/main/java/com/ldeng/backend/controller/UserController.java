@@ -50,11 +50,11 @@ public class UserController {
         String pwd = user.getPassword();
 
         if(!password.equals(pwd)) {
-            throw new ServletException("invalid login, please check your username ans password");
+            throw new ServletException("invalid login, please check your username and password");
         }
 
         // devuelvo el token
-        return Jwts.builder().setSubject(userName).claim("roles","user").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
+        return Jwts.builder().setSubject(userName).claim("roles", "user").setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secretkey").compact();
 
     }
 

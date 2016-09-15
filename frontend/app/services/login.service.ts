@@ -11,7 +11,7 @@ export class LoginService {
 
   sendCredentials(model) {
     let tokenUrl = 'http://localhost:8080/user/login';
-    let headers1 = new Headers({'Content-type':'application/json'});
+    let headers1 = new Headers({'Content-Type': 'application/json'});
 
     return this.http.post(tokenUrl, JSON.stringify(model), {headers: headers1});
   }
