@@ -1,109 +1,133 @@
 package com.ldeng.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.annotations.CreationTimestamp;
-
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by d_garcia on 08/08/2016.
- */
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 public class Photo {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long photoId;
+	@Id
+	@GeneratedValue (strategy = GenerationType.AUTO)
+	private Long photoId;
+	private String photoName;
+	private String title;
+	private String description;
+	private String imageName;
+	
+	@CreationTimestamp
+	private Date created;
+	
+	@ManyToOne
+	@JsonBackReference
+	private User user;
+	
+	private int likes;
+	
+	
+	@OneToMany(mappedBy = "photo", fetch = FetchType.EAGER)
+	private List<Comment> commentList;
 
-    private String photoName;
-    private String title;
-    private String description;
-    private String imageName;
 
-    @CreationTimestamp
-    private Date created;
+	public Long getPhotoId() {
+		return photoId;
+	}
 
-    @ManyToOne
-    @JsonIgnore
-    private User user;
 
-    private int likes;
+	public void setPhotoId(Long photoId) {
+		this.photoId = photoId;
+	}
 
-    @OneToMany(mappedBy = "photo", fetch = FetchType.EAGER)
-    private List<Comment> commentList;
 
-    public Long getPhotoId() {
-        return photoId;
-    }
+	public String getPhotoName() {
+		return photoName;
+	}
 
-    public void setPhotoId(Long photoId) {
-        this.photoId = photoId;
-    }
 
-    public String getPhotoName() {
-        return photoName;
-    }
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
+	}
 
-    public void setPhotoName(String photoName) {
-        this.photoName = photoName;
-    }
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
 
-    public String getDescription() {
-        return description;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
-    public String getImageName() {
-        return imageName;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setImageName(String imageName) {
-        this.imageName = imageName;
-    }
 
-    public Date getCreated() {
-        return created;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setCreated(Date created) {
-        this.created = created;
-    }
 
-    public User getUser() {
-        return user;
-    }
+	public String getImageName() {
+		return imageName;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
 
-    public int getLikes() {
-        return likes;
-    }
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
+	}
 
-    public void setLikes(int likes) {
-        this.likes = likes;
-    }
 
-    public List<Comment> getCommentList() {
-        return commentList;
-    }
+	public Date getCreated() {
+		return created;
+	}
 
-    public void setCommentList(List<Comment> commentList) {
-        this.commentList = commentList;
-    }
+
+	public void setCreated(Date created) {
+		this.created = created;
+	}
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+	public int getLikes() {
+		return likes;
+	}
+
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
+	
+	
 }
